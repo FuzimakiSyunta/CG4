@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerScript : MonoBehaviour
 {
     public Rigidbody rb;
-    private float movespeed = 1.0f;
+    private float movespeed = 5.0f;
+    private float jumpspeed = 5.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -14,7 +15,7 @@ public class PlayerScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Vector3 v = rb.velocity;
        
@@ -30,8 +31,16 @@ public class PlayerScript : MonoBehaviour
         {
             v.x = 0f;
         }
-
-
         rb.velocity = v;
     }
+    void Update()
+    {
+        Vector3 v = rb.velocity;
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            v.y = jumpspeed;
+        }
+        rb.velocity = v;
+    }
+
 }
